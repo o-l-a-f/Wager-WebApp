@@ -1,6 +1,6 @@
-export interface Transaction {
-    createTime: string,
+export interface WagerData {
     completed: boolean,
+    createDate: string,
     description: string,
     id: string;
     maker: User,
@@ -11,9 +11,8 @@ export interface Transaction {
 }
 
 export interface User {
-    id: string,
+    userId: string,
     firstName: string,
     lastName: string,
-    initials: string,
     joined: string
 }
