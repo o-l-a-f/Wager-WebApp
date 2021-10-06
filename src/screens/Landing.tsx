@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -7,6 +7,7 @@ import {WagerData} from "../globalTypes";
 import callGraphQL from "../api/wagerServiceClient";
 import {ListBetsResponse} from "../api/API";
 import {mapListBetsToWagerData, WagerQueries} from "../api/serviceUtils";
+import WagerDetailModal from "../components/WagerDetailModal";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -23,10 +24,16 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-
 export default function LandingPage() {
-    const classes = useStyles();
     const [wagers, setWagers] = useState<WagerData[]>([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleOpen = (wagerData: WagerData) => {
+        setModalOpen(true)
+        selectedWager.current = wagerData;
+    };
+    const handleClose = () => setModalOpen(false);
+    const selectedWager = useRef<WagerData>();
+    const classes = useStyles();
 
     useEffect(() => {
         async function getData() {
@@ -43,9 +50,10 @@ export default function LandingPage() {
 
     return (
         <div className={classes.root}>
+            <WagerDetailModal wagerData={selectedWager.current} modalOpen={modalOpen} handleClose={handleClose}/>
             <Paper className={classes.paper}>
                 <Grid container wrap="nowrap" spacing={2}>
-                    <WagerFeed wagers={wagers} />
+                    <WagerFeed wagers={wagers} handleOpen={handleOpen} />
                 </Grid>
             </Paper>
         </div>

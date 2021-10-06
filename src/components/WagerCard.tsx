@@ -16,33 +16,34 @@ const useStyles = (color: string) => {
             backgroundColor: color
         },
         inline: {
-            display: 'inline'
+            display: "inline"
+        },
+        listItem: {
+            display: "flex",
+            justifyContent: "space-between"
         }
     }))()
 };
 
-const WagerCard = ({
-    completed,
-    createDate,
-    description,
-    maker,
-    odds,
-    taker,
-    title,
-    value
-}: WagerData) => {
+interface WagerCardProps {
+    wagerData: WagerData,
+    handleOpen: (selected: WagerData) => void
+}
+
+const WagerCard = ({wagerData, handleOpen}: WagerCardProps) => {
+    const {createDate, maker, taker, title, value} = wagerData;
     const classes = useStyles(stringToColor(maker.firstName + maker.lastName));
 
     return (
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="flex-start" onClick={() => handleOpen(wagerData)}>
             <ListItemAvatar>
                 <Avatar className={classes.avatar}>{maker.firstName.charAt(0)}{maker.lastName.charAt(0)}</Avatar>
             </ListItemAvatar>
             <ListItemText
                 primary={
-                    <React.Fragment>
-                        <b>{maker.firstName}</b> bet <b>{taker.firstName}</b>  -  ${value}
-                    </React.Fragment>
+                    <div className={classes.listItem}>
+                        <span><b>{maker.firstName}</b> bet <b>{taker.firstName}</b></span>  ${value}
+                    </div>
                 }
                 secondary={
                     <React.Fragment>

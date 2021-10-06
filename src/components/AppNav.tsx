@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
         list: {
             width: 200,
         },
-        menuButton: {
-            marginRight: theme.spacing(1),
-        },
         title: {
             flexGrow: 1,
             fontFamily: "Helvetica",
@@ -45,18 +42,22 @@ const AppNav: React.FC = () => {
 
     return (
         <div className={classes.root}>
-            <AppBar className={classes.appBar} position="static" color="primary">
+            <AppBar
+                className={classes.appBar}
+                color="primary"
+                elevation={1}
+                position="static"
+            >
                 <Toolbar>
                     <Typography className={classes.title} variant="h5" noWrap>
                         _wager
                     </Typography>
                     <IconButton
                         edge="start"
-                        className={classes.menuButton}
                         color="inherit"
                         onClick={toggleDrawerOpen}
                     >
-                        <MenuIcon fontSize="large" />
+                        <MenuIcon fontSize="medium" />
                     </IconButton>
                     <Drawer anchor={"right"} open={drawerOpen} onClose={toggleDrawerOpen}>
                         <div className={classes.list}>
