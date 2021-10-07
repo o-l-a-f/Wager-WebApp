@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import WagerFeed from "../components/WagerFeed";
 import {WagerData} from "../globalTypes";
@@ -17,9 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(0, 3),
         },
         paper: {
-            maxWidth: 400,
-            margin: `${theme.spacing(1)}px auto`,
-            padding: theme.spacing(2),
+            margin: `${theme.spacing(5)}px auto`,
         },
     }),
 );
@@ -51,7 +49,7 @@ export default function LandingPage() {
     return (
         <div className={classes.root}>
             <WagerDetailModal wagerData={selectedWager.current} modalOpen={modalOpen} handleClose={handleClose}/>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={0}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <WagerFeed wagers={wagers} handleOpen={handleOpen} />
                 </Grid>

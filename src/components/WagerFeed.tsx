@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: "100%",
-            maxWidth: "100ch",
             backgroundColor: theme.palette.background.paper,
         }
     }),
@@ -28,7 +27,6 @@ const WagerFeed = ({wagers, handleOpen}: WagerFeedProps) => {
             {wagers.length > 0 && wagers.map((wager) =>
                 <div key={wager.id}>
                     <WagerCard wagerData={wager} handleOpen={handleOpen}/>
-                    <Divider variant="inset" component="li" />
                 </div>
             )}
         </List>

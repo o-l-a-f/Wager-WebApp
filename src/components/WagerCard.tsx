@@ -12,15 +12,22 @@ import {stringToColor} from "../utils/stringUtils";
 const useStyles = (color: string) => {
     return makeStyles((theme: Theme) => createStyles({
         avatar: {
+            backgroundColor: color,
             color: theme.palette.getContrastText(color),
-            backgroundColor: color
+            fontSize: "16px"
         },
         inline: {
             display: "inline"
         },
         listItem: {
             display: "flex",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            width: "100%"
+        },
+        text: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center"
         }
     }))()
 };
@@ -35,7 +42,13 @@ const WagerCard = ({wagerData, handleOpen}: WagerCardProps) => {
     const classes = useStyles(stringToColor(maker.firstName + maker.lastName));
 
     return (
-        <ListItem alignItems="flex-start" onClick={() => handleOpen(wagerData)}>
+        <ListItem
+            alignItems="flex-start"
+            classes={{ root: classes.listItem }}
+            divider={true}
+            onClick={() => handleOpen(wagerData)}
+            style={{height: 100}}
+        >
             <ListItemAvatar>
                 <Avatar className={classes.avatar}>{maker.firstName.charAt(0)}{maker.lastName.charAt(0)}</Avatar>
             </ListItemAvatar>
@@ -50,10 +63,10 @@ const WagerCard = ({wagerData, handleOpen}: WagerCardProps) => {
                         {createDate}{" "}<PublicIcon fontSize="inherit"/>
                         <br/>
                         <Typography
-                            component="span"
-                            variant="body2"
                             className={classes.inline}
                             color="textPrimary"
+                            component="span"
+                            variant="body1"
                         >
                             {title}
                         </Typography>

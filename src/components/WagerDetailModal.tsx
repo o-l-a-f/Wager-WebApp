@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import {WagerData} from "../globalTypes";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 
 const style = {
     position: "absolute" as "absolute",
@@ -12,7 +14,7 @@ const style = {
     width: "75%",
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: 4,
+    p: 3,
 };
 
 interface WagerModalProps {
@@ -31,27 +33,78 @@ export default function WagerDetailModal({wagerData, modalOpen, handleClose}: Wa
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Typography component="h2" id="modal-modal-title" variant="h5">
-                    {wagerData?.title}
+                <Box sx={{ my: 2 }}>
+                    <Grid container alignItems="center">
+                        <Grid item xs>
+                            <Typography gutterBottom variant="h4" component="div">
+                                wager
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography gutterBottom variant="h6" component="div">
+                                ${wagerData?.value}.00
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Typography color="text.secondary" variant="body2">
+                        {wagerData?.description}
+                    </Typography>
+                </Box>
+                <Divider/>
+                <Typography
+                    sx={{ mt: 0.5 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                >
+                    Status
                 </Typography>
-                <Typography>
-                    Description: {wagerData?.description}
+                <Typography variant="body2">{wagerData?.completed ? "Complete" : "Open"}</Typography>
+                <Typography
+                    sx={{ mt: 0.5 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                >
+                    Maker
                 </Typography>
-                <Typography>
-                    Maker: {wagerData?.maker.firstName} {wagerData?.maker.lastName}
+                <Typography variant="body2">{wagerData?.maker.firstName} {wagerData?.maker.lastName}</Typography>
+                <Typography
+                    sx={{ mt: 0.5 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                >
+                    Taker
                 </Typography>
-                <Typography>
-                    Taker: {wagerData?.taker.firstName} {wagerData?.taker.lastName}
+                <Typography variant="body2">{wagerData?.taker.firstName} {wagerData?.taker.lastName}</Typography>
+                <Typography
+                    sx={{ mt: 0.5 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                >
+                    Odds
                 </Typography>
-                <Typography>
-                    Value: ${wagerData?.value}
+                <Typography variant="body2">{wagerData?.odds}</Typography>
+                <Typography
+                    sx={{ mt: 0.5 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                >
+                    Wager Date
                 </Typography>
-                <Typography>
-                    Odds: {wagerData?.odds}
+                <Typography variant="body2">{wagerData?.createDate}</Typography>
+                <Typography
+                    sx={{ mt: 0.5 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                >
+                    Wager ID
                 </Typography>
-                <Typography>
-                    CreateDate: {wagerData?.createDate}
-                </Typography>
+                <Typography variant="body2">{wagerData?.id}</Typography>
             </Box>
         </Modal>
     );
