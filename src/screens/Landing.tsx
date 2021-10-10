@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles, createStyles, Theme, styled } from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import WagerFeed from "../components/WagerFeed";
-import {WagerData} from "../globalTypes";
+import {WagerData} from "../global/types";
 import callGraphQL from "../api/wagerServiceClient";
 import {ListBetsResponse} from "../api/API";
 import {mapListBetsToWagerData, WagerQueries} from "../api/serviceUtils";

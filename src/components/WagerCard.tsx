@@ -6,7 +6,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import PublicIcon from "@material-ui/icons/Public";
 import Typography from "@material-ui/core/Typography";
-import {WagerData} from "../globalTypes";
+import {WagerData} from "../global/types";
 import {stringToColor} from "../utils/stringUtils";
 
 const useStyles = (color: string) => {
@@ -47,7 +47,7 @@ const WagerCard = ({wagerData, handleOpen}: WagerCardProps) => {
             classes={{ root: classes.listItem }}
             divider={true}
             onClick={() => handleOpen(wagerData)}
-            style={{height: 100}}
+            style={{height: 115}}
         >
             <ListItemAvatar>
                 <Avatar className={classes.avatar}>{maker.firstName.charAt(0)}{maker.lastName.charAt(0)}</Avatar>

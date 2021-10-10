@@ -1,4 +1,4 @@
-import {User} from "../globalTypes";
+import {User} from "../global/types";
 
 const getUsersById = (userId: string) => {
     const userPool:{ [index: string] : User } = {

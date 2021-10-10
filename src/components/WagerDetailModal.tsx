@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import {WagerData} from "../globalTypes";
+import {WagerData} from "../global/types";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 

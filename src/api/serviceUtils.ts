@@ -1,6 +1,6 @@
 import {GraphQLResult} from "@aws-amplify/api";
 import {ListBetsResponse} from "./API";
-import {WagerData} from "../globalTypes";
+import {WagerData} from "../global/types";
 import getUsersById from "./usersClient";
 
 export const WagerMutations = {

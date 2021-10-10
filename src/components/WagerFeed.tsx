@@ -1,9 +1,8 @@
 import React from 'react';
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import WagerCard from "./WagerCard";
-import {WagerData} from "../globalTypes";
+import {WagerData} from "../global/types";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
