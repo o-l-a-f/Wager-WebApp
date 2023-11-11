@@ -32,13 +32,22 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const AppNav: React.FC = () => {
+interface AppNavProps {
+    toggleNewBetModalOpen: () => void
+}
+
+const AppNav = ({toggleNewBetModalOpen}: AppNavProps) => {
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const toggleDrawerOpen = () => {
         setDrawerOpen(!drawerOpen)
     };
+
+    const newBetOnClick = () => {
+        toggleNewBetModalOpen()
+        toggleDrawerOpen()
+    }
 
     return (
         <div className={classes.root}>
@@ -62,7 +71,7 @@ const AppNav: React.FC = () => {
                     <Drawer anchor={"right"} open={drawerOpen} onClose={toggleDrawerOpen}>
                         <div className={classes.list}>
                             <List>
-                                <ListItem button>
+                                <ListItem button={true} onClick={newBetOnClick}>
                                     <ListItemIcon><PostAddSharpIcon/></ListItemIcon>
                                     <ListItemText primary="New Wager"/>
                                 </ListItem>

@@ -8,6 +8,7 @@ import callGraphQL from "../api/wagerServiceClient";
 import {ListBetsResponse} from "../api/API";
 import {mapListBetsToWagerData, WagerQueries} from "../api/serviceUtils";
 import WagerDetailModal from "../components/WagerDetailModal";
+import NewWagerModal from "../components/NewWagerModal";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,15 +23,22 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function LandingPage() {
+interface LandngPageProps {
+    newBetModalOpen: boolean
+    toggleNewBetModalOpen: () => void
+}
+
+export default function LandingPage({newBetModalOpen, toggleNewBetModalOpen}: LandngPageProps) {
     const [wagers, setWagers] = useState<WagerData[]>([]);
-    const [modalOpen, setModalOpen] = useState(false);
-    const handleOpen = (wagerData: WagerData) => {
-        setModalOpen(true)
+
+    const [betDetailModalOpen, setBetDetailModalOpen] = useState(false);
+    const handleBetDetailOpen = (wagerData: WagerData) => {
+        setBetDetailModalOpen(true)
         selectedWager.current = wagerData;
     };
-    const handleClose = () => setModalOpen(false);
+    const handleBetDetailClose = () => setBetDetailModalOpen(false);
     const selectedWager = useRef<WagerData>();
+
     const classes = useStyles();
 
     useEffect(() => {
@@ -48,10 +56,11 @@ export default function LandingPage() {
 
     return (
         <div className={classes.root}>
-            <WagerDetailModal wagerData={selectedWager.current} modalOpen={modalOpen} handleClose={handleClose}/>
+            <WagerDetailModal wagerData={selectedWager.current} modalOpen={betDetailModalOpen} handleClose={handleBetDetailClose}/>
+            <NewWagerModal modalOpen={newBetModalOpen} toggleModalOpen={toggleNewBetModalOpen}/>
             <Paper className={classes.paper} elevation={0}>
                 <Grid container wrap="nowrap" spacing={2}>
-                    <WagerFeed wagers={wagers} handleOpen={handleOpen} />
+                    <WagerFeed wagers={wagers} handleOpen={handleBetDetailOpen} />
                 </Grid>
             </Paper>
         </div>
