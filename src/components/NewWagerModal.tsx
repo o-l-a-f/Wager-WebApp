@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import {Button, Divider, Modal} from "@material-ui/core";
+import SendIcon from "@mui/icons-material/Send";
 
 const style = {
     position: "absolute" as "absolute",
@@ -13,6 +14,8 @@ const style = {
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 3,
+    overflow: "scroll",
+    maxHeight: "90%"
 };
 
 interface NewWagerModalProps {
@@ -31,7 +34,7 @@ export default function NewWagerModal({modalOpen, toggleModalOpen}: NewWagerModa
         >
             <Box sx={style}>
                 <Typography gutterBottom variant="h4" component="div">
-                    +wager
+                    <u>+</u>wager
                 </Typography>
                 <Box
                     component="form"
@@ -47,14 +50,16 @@ export default function NewWagerModal({modalOpen, toggleModalOpen}: NewWagerModa
                             label="Amount"
                             variant="filled"
                             placeholder="$0.00"
-                            sx={{ width: "20%" }}
+                            sx={{ width: "25%" }}
+                            size={"small"}
                         />
                         <TextField
                             id="wager-field"
                             label="What's the bet?"
                             variant="filled"
                             placeholder="Title"
-                            sx={{ width: "60%" }}
+                            sx={{ width: "50%" }}
+                            size={"small"}
                         />
                     </div>
                 </Box>
@@ -80,11 +85,13 @@ export default function NewWagerModal({modalOpen, toggleModalOpen}: NewWagerModa
                             id="maker-firstName-field"
                             label="First Name"
                             variant="filled"
+                            size={"small"}
                         />
                         <TextField
                             id="maker-lastName-field"
                             label="Last Name"
                             variant="filled"
+                            size={"small"}
                         />
                     </div>
                     <Divider/>
@@ -101,11 +108,13 @@ export default function NewWagerModal({modalOpen, toggleModalOpen}: NewWagerModa
                             id="taker-firstName-field"
                             label="First Name"
                             variant="filled"
+                            size={"small"}
                         />
                         <TextField
                             id="taker-lastName-field"
                             label="Last Name"
                             variant="filled"
+                            size={"small"}
                         />
                     </div>
                 </Box>
@@ -131,6 +140,7 @@ export default function NewWagerModal({modalOpen, toggleModalOpen}: NewWagerModa
                             variant="filled"
                             defaultValue="1:1"
                             sx={{ width: "25ch" }}
+                            size={"small"}
                         />
                         <TextField
                             id="description-field"
@@ -139,17 +149,30 @@ export default function NewWagerModal({modalOpen, toggleModalOpen}: NewWagerModa
                             multiline
                             rows={3}
                             fullWidth
+                            size={"small"}
                         />
                     </div>
                 </Box>
-                <Button
-                    color="secondary"
-                    variant="contained"
-                    endIcon={"$"}
-                    onClick={toggleModalOpen}
-                >
-                    Submit
-                </Button>
+                <Box sx={{ '& button': { m: 1 } }}>
+                    <div>
+                        <Button
+                            variant="contained"
+                            onClick={toggleModalOpen}
+                            size="small"
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            color="secondary"
+                            variant="contained"
+                            endIcon={<SendIcon/>}
+                            onClick={toggleModalOpen}
+                            size="small"
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </Box>
             </Box>
         </Modal>
     );

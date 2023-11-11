@@ -9,6 +9,7 @@ import {ListBetsResponse} from "../api/API";
 import {mapListBetsToWagerData, WagerQueries} from "../api/serviceUtils";
 import WagerDetailModal from "../components/WagerDetailModal";
 import NewWagerModal from "../components/NewWagerModal";
+import {customWagerSort} from "../utils/wagerUtils";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -46,7 +47,8 @@ export default function LandingPage({newBetModalOpen, toggleNewBetModalOpen}: La
             try {
                 const betsData = await callGraphQL<ListBetsResponse>(WagerQueries.listBets);
                 const wagersData = mapListBetsToWagerData(betsData);
-                setWagers(wagersData);
+                const sortedWagers = customWagerSort(wagersData);
+                setWagers(sortedWagers);
             } catch (error) {
                 console.error("Error fetching bets", error);
             }

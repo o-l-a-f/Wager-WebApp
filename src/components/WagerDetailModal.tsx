@@ -14,7 +14,7 @@ const style = {
     width: "75%",
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: 3,
+    p: 3
 };
 
 interface WagerModalProps {
@@ -37,7 +37,7 @@ export default function WagerDetailModal({wagerData, modalOpen, handleClose}: Wa
                     <Grid container alignItems="center">
                         <Grid item xs>
                             <Typography gutterBottom variant="h4" component="div">
-                                wager
+                                _wager
                             </Typography>
                         </Grid>
                         <Grid item>
