@@ -4,11 +4,7 @@
     "emitDeclarationOnly": true,
     "outDir": "./build/",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -23,8 +19,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src",
-    "index.d.ts"
-  ]
+  "include": ["src", "index.d.ts"]
 }

@@ -1,12 +1,48 @@
-import Amplify from "aws-amplify";
+import { Amplify } from "aws-amplify";
 
 export class AmplifyConfiguration {
-    static configureAmplify() {
-        Amplify.configure({
-            aws_appsync_region: "us-east-1",
-            aws_appsync_graphqlEndpoint: "https://xrqpwgbe2nbxjcpaayn7rafefu.appsync-api.us-east-1.amazonaws.com/graphql",
-            aws_appsync_authenticationType: "API_KEY",
-            aws_appsync_apiKey: "da2-xb6qgipwpfbatk6xqenbkfpjqa"
-        })
-    }
+  static configureAmplify() {
+    Amplify.configure({
+      API: {
+        GraphQL: {
+          endpoint:
+            "https://xrqpwgbe2nbxjcpaayn7rafefu.appsync-api.us-east-1.amazonaws.com/graphql",
+          region: "us-east-1",
+          defaultAuthMode: "apiKey",
+          // defaultAuthMode: "userPool"
+          apiKey: "da2-utxksfjw55e3fd3wvkb45sy6pi"
+        }
+      }
+      // },
+      // Auth: {
+      //     Cognito: {
+      //         userPoolClientId: "6tahtmnuc8fk3p15sog1a9hbdd",
+      //         userPoolId: "us-east-1_KBCnfHjFv",
+      //         signUpVerificationMethod: "code",
+      //         loginWith: {
+      //             username: true,
+      //             email: true,
+      //             phone: true
+      //         },
+      //         userAttributes: {
+      //             given_name: { required: true },
+      //             family_name: { required: true },
+      //             email: { required: true },
+      //             phone_number: { required: true }
+      //         },
+      //         mfa: {
+      //             status: "optional",
+      //             smsEnabled: true
+      //         },
+      //         passwordFormat: {
+      //             minLength: 12,
+      //             requireLowercase: true,
+      //             requireUppercase: true,
+      //             requireNumbers: true,
+      //             requireSpecialCharacters: true
+      //         }
+      //     }
+      // }
+    });
+  }
 }
