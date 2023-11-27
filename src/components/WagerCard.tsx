@@ -38,8 +38,8 @@ interface WagerCardProps {
 
 const WagerCard = ({ wagerData, handleOpen }: WagerCardProps) => {
   const { createDate, maker, taker, title, value } = wagerData;
-  const color = stringToColor(JSON.stringify(maker));
-  const classes = useStyles(color);
+  const avatarColor = stringToColor(JSON.stringify(maker));
+  const classes = useStyles(avatarColor);
 
   return (
     <ListItem
@@ -50,7 +50,7 @@ const WagerCard = ({ wagerData, handleOpen }: WagerCardProps) => {
       style={{ height: 115 }}
     >
       <ListItemAvatar>
-        <Avatar sx={{ bgcolor: color }}>
+        <Avatar sx={{ bgcolor: avatarColor }}>
           {maker.firstName.charAt(0)}
           {maker.lastName.charAt(0)}
         </Avatar>
@@ -61,7 +61,7 @@ const WagerCard = ({ wagerData, handleOpen }: WagerCardProps) => {
             <span>
               <b>{maker.firstName}</b> bet <b>{taker.firstName}</b>
             </span>{" "}
-            ${value}
+            <span>${value}</span>
           </div>
         }
         secondary={

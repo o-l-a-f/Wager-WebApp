@@ -22,7 +22,7 @@ import {
 } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 import { createStyles, makeStyles } from "@mui/styles";
-import { useNewBetModalContext } from "./hooks/NewBetModalContext";
+import { useModalContext } from "./hooks/ModalContext";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -52,16 +52,17 @@ const AppNav = React.memo(() => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawerOpen = () => {
     setDrawerOpen(!drawerOpen);
+    setExpanderOpen(false);
   };
 
-  const { handleModalOpen } = useNewBetModalContext();
+  const { toggleNewBetModalOpen } = useModalContext();
   const newBetOnClick = () => {
-    handleModalOpen();
+    toggleNewBetModalOpen();
     toggleDrawerOpen();
   };
 
   const [expanderOpen, setExpanderOpen] = React.useState(false);
-  const handleClick = () => {
+  const handleExpanderClick = () => {
     setExpanderOpen(!expanderOpen);
   };
 
@@ -95,7 +96,7 @@ const AppNav = React.memo(() => {
                 </ListItem>
                 <Divider />
                 <ListItem disablePadding>
-                  <ListItemButton onClick={handleClick}>
+                  <ListItemButton onClick={handleExpanderClick}>
                     <ListItemIcon>
                       <PersonIcon />
                     </ListItemIcon>

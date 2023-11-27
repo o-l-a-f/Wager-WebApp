@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Divider, Grid, Modal, Typography } from "@mui/material";
-import { WagerData } from "../global/types";
+import { useModalContext } from "./hooks/ModalContext";
 
 const style = {
   // eslint-disable-next-line
@@ -14,17 +14,13 @@ const style = {
   p: 3
 };
 
-interface WagerModalProps {
-  wagerData?: WagerData;
-  modalOpen: boolean;
-  handleClose: () => void;
-}
+export default function WagerDetailModal() {
+  const { selectedWager, closeSelectedWagerModal } = useModalContext();
 
-export default function WagerDetailModal({ wagerData, modalOpen, handleClose }: WagerModalProps) {
   return (
     <Modal
-      open={modalOpen}
-      onClose={handleClose}
+      open={selectedWager !== undefined}
+      onClose={closeSelectedWagerModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -38,43 +34,43 @@ export default function WagerDetailModal({ wagerData, modalOpen, handleClose }: 
             </Grid>
             <Grid item>
               <Typography gutterBottom variant="h6" component="div">
-                ${wagerData?.value}.00
+                ${selectedWager?.value}.00
               </Typography>
             </Grid>
           </Grid>
           <Typography color="text.secondary" variant="body2">
-            {wagerData?.description}
+            {selectedWager?.description}
           </Typography>
         </Box>
         <Divider />
         <Typography sx={{ mt: 0.5 }} color="text.secondary" display="block" variant="caption">
           Status
         </Typography>
-        <Typography variant="body2">{wagerData?.completed ? "Complete" : "Open"}</Typography>
+        <Typography variant="body2">{selectedWager?.completed ? "Complete" : "Open"}</Typography>
         <Typography sx={{ mt: 0.5 }} color="text.secondary" display="block" variant="caption">
           Maker
         </Typography>
         <Typography variant="body2">
-          {wagerData?.maker.firstName} {wagerData?.maker.lastName}
+          {selectedWager?.maker.firstName} {selectedWager?.maker.lastName}
         </Typography>
         <Typography sx={{ mt: 0.5 }} color="text.secondary" display="block" variant="caption">
           Taker
         </Typography>
         <Typography variant="body2">
-          {wagerData?.taker.firstName} {wagerData?.taker.lastName}
+          {selectedWager?.taker.firstName} {selectedWager?.taker.lastName}
         </Typography>
         <Typography sx={{ mt: 0.5 }} color="text.secondary" display="block" variant="caption">
           Odds
         </Typography>
-        <Typography variant="body2">{wagerData?.odds}</Typography>
+        <Typography variant="body2">{selectedWager?.odds}</Typography>
         <Typography sx={{ mt: 0.5 }} color="text.secondary" display="block" variant="caption">
           Wager Date
         </Typography>
-        <Typography variant="body2">{wagerData?.createDate}</Typography>
+        <Typography variant="body2">{selectedWager?.createDate}</Typography>
         <Typography sx={{ mt: 0.5 }} color="text.secondary" display="block" variant="caption">
           Wager ID
         </Typography>
-        <Typography variant="body2">{wagerData?.id}</Typography>
+        <Typography variant="body2">{selectedWager?.id}</Typography>
       </Box>
     </Modal>
   );

@@ -4,7 +4,7 @@ import { Theme } from "@mui/material/styles";
 import { createStyles, makeStyles } from "@mui/styles";
 import WagerCard from "./WagerCard";
 import { WagerData } from "../global/types";
-import { useWagerDataContext } from "./hooks/WagerDataContext";
+import { useModalContext } from "./hooks/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,19 +16,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface WagerFeedProps {
-  handleOpen: (selected: WagerData) => void;
+  wagerData: WagerData[];
 }
 
-const WagerFeed = ({ handleOpen }: WagerFeedProps) => {
-  const { wagerData } = useWagerDataContext();
+const WagerFeed = ({ wagerData }: WagerFeedProps) => {
   const classes = useStyles();
+  const { openSelectedWagerModal } = useModalContext();
 
   return (
     <List className={classes.root}>
       {wagerData.length &&
         wagerData.map((wager) => (
           <div key={wager.id}>
-            <WagerCard wagerData={wager} handleOpen={handleOpen} />
+            <WagerCard wagerData={wager} handleOpen={openSelectedWagerModal} />
           </div>
         ))}
     </List>

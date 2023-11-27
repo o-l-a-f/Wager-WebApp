@@ -3,13 +3,14 @@ import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import AppNav from "./components/AppNav";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import NewBetModalContextProvider from "./components/hooks/NewBetModalContext";
+import ModalContextProvider from "./components/hooks/ModalContext";
 import CurrentScreen from "./routes";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { AmplifyConfiguration } from "./api/amplify";
 import "@aws-amplify/ui-react/styles.css";
 import "./styles.css";
 import { Header, SignInFooter, SignInHeader } from "./screens/login";
+import FixedBottomNavigation from "./components/FixedBottemNavigation";
 
 const colorTheme = createTheme({
   palette: {
@@ -27,12 +28,13 @@ AmplifyConfiguration.configureAmplify();
 const App = React.memo(() => {
   return (
     <ThemeProvider theme={colorTheme}>
-      <NewBetModalContextProvider>
+      <ModalContextProvider>
         <AppNav />
         <BrowserRouter>
           <CurrentScreen />
         </BrowserRouter>
-      </NewBetModalContextProvider>
+        <FixedBottomNavigation />
+      </ModalContextProvider>
     </ThemeProvider>
   );
 });

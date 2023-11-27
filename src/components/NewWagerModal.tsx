@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Divider, Modal, TextField, Typography } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useNewBetModalContext } from "./hooks/NewBetModalContext";
+import { useModalContext } from "./hooks/ModalContext";
 
 const style = {
   // eslint-disable-next-line
@@ -18,11 +18,11 @@ const style = {
 };
 
 const NewWagerModal = React.memo(() => {
-  const { modalOpen, handleModalOpen } = useNewBetModalContext();
+  const { newBetModalOpen, toggleNewBetModalOpen } = useModalContext();
   return (
     <Modal
-      open={modalOpen}
-      onClose={handleModalOpen}
+      open={newBetModalOpen}
+      onClose={toggleNewBetModalOpen}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -134,13 +134,13 @@ const NewWagerModal = React.memo(() => {
         </Box>
         <Box sx={{ "& button": { m: 1 } }}>
           <div>
-            <Button variant="outlined" onClick={handleModalOpen} size="small">
+            <Button variant="outlined" onClick={toggleNewBetModalOpen} size="small">
               Cancel
             </Button>
             <Button
               variant="contained"
               endIcon={<SendIcon />}
-              onClick={handleModalOpen}
+              onClick={toggleNewBetModalOpen}
               size="small"
             >
               Submit
