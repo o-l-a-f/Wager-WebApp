@@ -38,12 +38,7 @@ const App = React.memo(() => {
 });
 
 export default withAuthenticator(App, {
-  signUpAttributes: [
-    "email",
-    "family_name",
-    "given_name",
-    "phone_number"
-  ],
+  signUpAttributes: ["email", "family_name", "given_name", "phone_number"],
   components: {
     Header,
     SignIn: {
