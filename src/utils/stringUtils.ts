@@ -1,5 +1,5 @@
 export function stringToColor(input: string) {
-  const avatarColors = ["#BD312D", "#469BC4", "#79676E", "#E7A83D", "#4CA89C"];
+  const avatarColors = ["#27364D", "#469BC4", "#008F7D", "#E7A83D", "#5E190A"];
 
   const hashString = input
     .split("")

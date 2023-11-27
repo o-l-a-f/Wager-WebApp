@@ -38,8 +38,7 @@ interface WagerCardProps {
 
 const WagerCard = ({ wagerData, handleOpen }: WagerCardProps) => {
   const { createDate, maker, taker, title, value } = wagerData;
-  const color = stringToColor(maker.firstName + maker.lastName);
-  console.log("COLOR HASH:" + color);
+  const color = stringToColor(JSON.stringify(maker));
   const classes = useStyles(color);
 
   return (

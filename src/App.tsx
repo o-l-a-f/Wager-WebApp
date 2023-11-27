@@ -5,6 +5,11 @@ import AppNav from "./components/AppNav";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import NewBetModalContextProvider from "./components/hooks/NewBetModalContext";
 import CurrentScreen from "./routes";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { AmplifyConfiguration } from "./api/amplify";
+import "@aws-amplify/ui-react/styles.css";
+import "./styles.css";
+import { Header, SignInFooter, SignInHeader } from "./screens/login";
 
 const colorTheme = createTheme({
   palette: {
@@ -16,6 +21,8 @@ const colorTheme = createTheme({
     fontFamily: "sans-serif"
   }
 });
+
+AmplifyConfiguration.configureAmplify();
 
 const App = React.memo(() => {
   return (
@@ -30,4 +37,18 @@ const App = React.memo(() => {
   );
 });
 
-export default App;
+export default withAuthenticator(App, {
+  signUpAttributes: [
+    "email",
+    "family_name",
+    "given_name",
+    "phone_number"
+  ],
+  components: {
+    Header,
+    SignIn: {
+      Header: SignInHeader,
+      Footer: SignInFooter
+    }
+  }
+});
