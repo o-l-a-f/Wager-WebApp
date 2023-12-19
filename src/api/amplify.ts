@@ -5,11 +5,10 @@ export class AmplifyConfiguration {
     Amplify.configure({
       API: {
         GraphQL: {
-          endpoint:
-            "https://xrqpwgbe2nbxjcpaayn7rafefu.appsync-api.us-east-1.amazonaws.com/graphql",
+          endpoint: "https://xrqpwgbe2nbxjcpaayn7rafefu.appsync-api.us-east-1.amazonaws.com/graphql",
           region: "us-east-1",
           defaultAuthMode: "userPool",
-          apiKey: "da2-utxksfjw55e3fd3wvkb45sy6pi"
+          apiKey: "da2-xr2ms4rts5d5hjzqa67q4bqdia"
         }
       },
       Auth: {
